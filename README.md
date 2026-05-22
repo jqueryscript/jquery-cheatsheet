@@ -1,8 +1,14 @@
 ﻿# jQuery 4 Cheat Sheet
 
-A practical, searchable jQuery 4 cheat sheet for selectors, DOM manipulation, traversal, events, Ajax, effects, forms, utilities, classic jQuery APIs still supported in jQuery 4, and removed API replacements.
+Fast jQuery lookup for real projects. This repo collects the jQuery 4 APIs developers reach for most often, plus the older jQuery patterns that still work in jQuery 4 and the removed APIs that need native JavaScript replacements.
 
-The project is designed for developers who need a fast reference while maintaining older jQuery code, updating jQuery 3 projects, or learning the jQuery API surface that still matters in jQuery 4.
+Use it when you need to maintain legacy jQuery code, update a jQuery 3 project, check a method signature, copy a short example, or confirm whether an old snippet still belongs in a jQuery 4 codebase.
+
+Web version:
+
+```text
+https://www.jqueryscript.net/jquery-cheat-sheet/
+```
 
 ## What Is Included
 
@@ -17,19 +23,11 @@ The project is designed for developers who need a fast reference while maintaini
 
 ## Live Page Target
 
-Recommended public URL:
+Public URL:
 
 ```text
 https://www.jqueryscript.net/jquery-cheat-sheet/
 ```
-
-If the final URL changes, update these values in `index.html`:
-
-- `canonical`
-- `og:url`
-- `og:image`
-- `twitter:image`
-- JSON-LD URLs
 
 ## Quick Start
 
@@ -233,23 +231,23 @@ $(".steps li").last().addClass("is-final");
 
 ```text
 .
-鈹溾攢鈹€ index.html
-鈹溾攢鈹€ assets/
-鈹?  鈹溾攢鈹€ app.js
-鈹?  鈹溾攢鈹€ styles.css
-鈹?  鈹溾攢鈹€ favicon.svg
-鈹?  鈹斺攢鈹€ jquery-4-cheat-sheet-og.svg
-鈹溾攢鈹€ data/
-鈹?  鈹斺攢鈹€ jquery-4-cheatsheet.json
-鈹溾攢鈹€ scripts/
-鈹?  鈹斺攢鈹€ validate-data.js
-鈹溾攢鈹€ .github/
-鈹?  鈹溾攢鈹€ ISSUE_TEMPLATE/
-鈹?  鈹斺攢鈹€ workflows/
-鈹溾攢鈹€ CONTRIBUTING.md
-鈹溾攢鈹€ LICENSE
-鈹溾攢鈹€ package.json
-鈹斺攢鈹€ README.md
+|-- index.html
+|-- assets/
+|   |-- app.js
+|   |-- styles.css
+|   |-- favicon.svg
+|   `-- jquery-4-cheat-sheet-og.svg
+|-- data/
+|   `-- jquery-4-cheatsheet.json
+|-- scripts/
+|   `-- validate-data.js
+|-- .github/
+|   |-- ISSUE_TEMPLATE/
+|   `-- workflows/
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- package.json
+`-- README.md
 ```
 
 ## Content Data Model

@@ -1,0 +1,23 @@
+{
+  "name": "jquery-4-cheatsheet",
+  "version": "1.0.0",
+  "description": "Searchable jQuery 4 cheat sheet with classic APIs, migration notes, and removed API replacements.",
+  "private": true,
+  "scripts": {
+    "validate": "node scripts/validate-data.js",
+    "serve": "python -m http.server 4173"
+  },
+  "keywords": [
+    "jquery",
+    "jquery-4",
+    "jquery-cheatsheet",
+    "cheatsheet",
+    "javascript",
+    "frontend",
+    "dom",
+    "ajax",
+    "events",
+    "migration-guide"
+  ],
+  "license": "MIT"
+}

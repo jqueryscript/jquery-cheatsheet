@@ -1,0 +1,727 @@
+{
+  "version": "4.0.0",
+  "updated": "2026-05-22",
+  "sections": [
+    {
+      "id": "getting-started",
+      "title": "Getting Started",
+      "description": "Install jQuery 4, run code after the DOM is ready, and choose the right build.",
+      "items": [
+        {
+          "id": "getting-started-cdn",
+          "title": "Load jQuery 4 from the official CDN",
+          "syntax": "<script src=\"https://code.jquery.com/jquery-4.0.0.min.js\"></script>",
+          "example": "<script src=\"https://code.jquery.com/jquery-4.0.0.min.js\"></script>\n<script>\n  $(function () {\n    $(\".status\").text(\"jQuery is ready\");\n  });\n</script>",
+          "notes": "Use the official CDN URL when you need a direct browser script tag.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://blog.jquery.com/2026/01/17/jquery-4-0-0/"
+        },
+        {
+          "id": "getting-started-npm",
+          "title": "Install from npm",
+          "syntax": "npm install jquery@4.0.0",
+          "example": "npm install jquery@4.0.0\n\nimport $ from \"jquery\";\n\n$(\".notice\").addClass(\"is-visible\");",
+          "notes": "Use the npm package when jQuery is bundled by a build tool.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://blog.jquery.com/2026/01/17/jquery-4-0-0/"
+        },
+        {
+          "id": "getting-started-ready",
+          "title": "Run code after the DOM is ready",
+          "syntax": "$(handler)",
+          "example": "$(function () {\n  $(\".menu\").addClass(\"is-ready\");\n});",
+          "notes": "This short ready handler is preferred over older document-ready forms.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/ready/"
+        },
+        {
+          "id": "getting-started-slim",
+          "title": "Use the slim build only when you do not need excluded modules",
+          "syntax": "<script src=\"https://code.jquery.com/jquery-4.0.0.slim.min.js\"></script>",
+          "example": "<script src=\"https://code.jquery.com/jquery-4.0.0.slim.min.js\"></script>\n<script>\n  $(\"button\").on(\"click\", function () {\n    $(this).toggleClass(\"is-active\");\n  });\n</script>",
+          "notes": "The jQuery 4 slim build excludes ajax, effects, callbacks, deferred, and queue modules. Use the full build for those features.",
+          "jquery4Status": "caution",
+          "replacement": "Use https://code.jquery.com/jquery-4.0.0.min.js when ajax, effects, Deferred, Callbacks, or queues are needed.",
+          "officialUrl": "https://blog.jquery.com/2026/01/17/jquery-4-0-0/"
+        },
+        {
+          "id": "getting-started-browser-support",
+          "title": "Know the supported browsers",
+          "syntax": "jQuery 4 supports IE 11, current major browsers, and recent mobile browsers.",
+          "example": "// If a project must support IE 10 or older, stay on jQuery 3.x.\n// If it supports jQuery 4 browsers, test with jQuery Migrate 4 during upgrade.",
+          "notes": "jQuery 4 drops support for IE 10 and older, Edge Legacy, and older mobile browsers.",
+          "jquery4Status": "changed",
+          "replacement": "Use jQuery 3.x for unsupported legacy browsers.",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        }
+      ]
+    },
+    {
+      "id": "classic-apis-still-useful",
+      "title": "Classic APIs Still Useful in jQuery 4",
+      "description": "Popular jQuery APIs from earlier versions that still work in jQuery 4 and remain useful in everyday code.",
+      "items": [
+        {
+          "id": "classic-chaining",
+          "title": "Chain methods on the same set",
+          "syntax": ".$method().$method()",
+          "example": "$(\".notice\")\n  .addClass(\"is-visible\")\n  .text(\"Saved\")\n  .attr(\"role\", \"status\");",
+          "notes": "Chaining has been a core jQuery pattern for years and remains useful in jQuery 4.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/"
+        },
+        {
+          "id": "classic-implicit-iteration",
+          "title": "Let jQuery loop over matched elements",
+          "syntax": "$(selector).method(value)",
+          "example": "$(\".tag\").addClass(\"is-muted\");\n$(\".field\").prop(\"disabled\", true);",
+          "notes": "Most setter methods apply to every matched element, so an explicit loop is often unnecessary.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/"
+        },
+        {
+          "id": "classic-eq",
+          "title": "Select an item by index",
+          "syntax": ".eq(index)",
+          "example": "$(\".gallery img\")\n  .eq(2)\n  .addClass(\"is-featured\");",
+          "notes": "`.eq()` returns a new jQuery object containing the element at the requested zero-based index.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/eq/"
+        },
+        {
+          "id": "classic-first-last",
+          "title": "Select the first or last item",
+          "syntax": ".first() / .last()",
+          "example": "$(\".steps li\").first().addClass(\"is-current\");\n$(\".steps li\").last().addClass(\"is-final\");",
+          "notes": "These helpers are concise alternatives to index-based selection.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/first/"
+        },
+        {
+          "id": "classic-has-class",
+          "title": "Check whether an element has a class",
+          "syntax": ".hasClass(className)",
+          "example": "if ($(\".panel\").hasClass(\"is-open\")) {\n  $(\".panel-status\").text(\"Open\");\n}",
+          "notes": "Use `.hasClass()` when code needs to branch based on the current class state.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/hasClass/"
+        },
+        {
+          "id": "classic-val",
+          "title": "Read or set form values",
+          "syntax": ".val([value])",
+          "example": "const email = $(\"#email\").val();\n$(\"#email\").val(\"editor@example.com\");",
+          "notes": "`.val()` is still one of the most common jQuery form helpers.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/val/"
+        },
+        {
+          "id": "classic-serialize",
+          "title": "Serialize form fields",
+          "syntax": ".serialize()",
+          "example": "const payload = $(\"#contact-form\").serialize();\n\n$.post(\"/api/contact\", payload);",
+          "notes": "`.serialize()` creates a URL-encoded string from successful form controls.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/serialize/"
+        },
+        {
+          "id": "classic-clone",
+          "title": "Clone matched elements",
+          "syntax": ".clone([withDataAndEvents])",
+          "example": "const copy = $(\".template\").clone();\ncopy.removeClass(\"template\").appendTo(\".items\");",
+          "notes": "Clone templates carefully. Pass event/data options only when copying existing behavior is intentional.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/clone/"
+        },
+        {
+          "id": "classic-wrap",
+          "title": "Wrap elements with new markup",
+          "syntax": ".wrap(html) / .unwrap()",
+          "example": "$(\".article img\").wrap(\"<figure></figure>\");\n$(\".legacy-wrapper > img\").unwrap();",
+          "notes": "Wrap helpers are useful when enhancing existing markup without rebuilding the whole node tree.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/wrap/"
+        },
+        {
+          "id": "classic-one",
+          "title": "Run an event handler once",
+          "syntax": ".one(events[, selector], handler)",
+          "example": "$(\".intro-video\").one(\"play\", function () {\n  $(\".video-note\").text(\"Started\");\n});",
+          "notes": "`.one()` removes the handler after the first matching event.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/one/"
+        },
+        {
+          "id": "classic-trigger",
+          "title": "Trigger an event",
+          "syntax": ".trigger(eventType)",
+          "example": "$(\"#country\").val(\"US\").trigger(\"change\");",
+          "notes": "Use `.trigger()` when code needs to notify existing jQuery event handlers after a scripted change.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/trigger/"
+        },
+        {
+          "id": "classic-prevent-default",
+          "title": "Prevent a default browser action",
+          "syntax": "event.preventDefault()",
+          "example": "$(\".ajax-form\").on(\"submit\", function (event) {\n  event.preventDefault();\n  $.post(this.action, $(this).serialize());\n});",
+          "notes": "This standard event method is still used often in jQuery event handlers.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/event.preventDefault/"
+        }
+      ]
+    },
+    {
+      "id": "selectors",
+      "title": "Selectors",
+      "description": "Find elements with CSS selectors and jQuery selector helpers.",
+      "items": [
+        {
+          "id": "selectors-css",
+          "title": "Select elements with CSS selectors",
+          "syntax": "$(selector)",
+          "example": "$(\"#main\")\n$(\".button\")\n$(\"nav a\")\n$(\"input[type='email']\")",
+          "notes": "Most everyday jQuery selection starts with standard CSS selectors.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/jQuery/"
+        },
+        {
+          "id": "selectors-context",
+          "title": "Limit selection to a context",
+          "syntax": "$(selector, context)",
+          "example": "const panel = document.querySelector(\".panel\");\nconst buttons = $(\"button\", panel);",
+          "notes": "A context prevents accidental matches outside a known container.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/jQuery/"
+        },
+        {
+          "id": "selectors-filter",
+          "title": "Filter a matched set",
+          "syntax": ".filter(selector | function)",
+          "example": "$(\"li\")\n  .filter(\".is-active\")\n  .addClass(\"highlight\");",
+          "notes": "Use filtering after broad selection when the condition is easier to express in steps.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/filter/"
+        },
+        {
+          "id": "selectors-find",
+          "title": "Find descendants inside each matched element",
+          "syntax": ".find(selector)",
+          "example": "$(\".card\")\n  .find(\"button\")\n  .prop(\"disabled\", false);",
+          "notes": "Use `.find()` for descendant lookup inside an existing jQuery object.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/find/"
+        }
+      ]
+    },
+    {
+      "id": "dom-traversal",
+      "title": "DOM Traversal",
+      "description": "Move from a matched element to parents, children, siblings, and nearby nodes.",
+      "items": [
+        {
+          "id": "dom-traversal-parent",
+          "title": "Get the parent or closest ancestor",
+          "syntax": ".parent() / .closest(selector)",
+          "example": "$(event.target)\n  .closest(\".todo-item\")\n  .addClass(\"is-editing\");",
+          "notes": "Use `.closest()` when you need the nearest ancestor that matches a selector.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/closest/"
+        },
+        {
+          "id": "dom-traversal-children",
+          "title": "Get children",
+          "syntax": ".children([selector])",
+          "example": "$(\".tabs\")\n  .children(\"button\")\n  .first()\n  .attr(\"aria-selected\", \"true\");",
+          "notes": "`.children()` only returns direct children. Use `.find()` for deeper descendants.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/children/"
+        },
+        {
+          "id": "dom-traversal-siblings",
+          "title": "Get siblings",
+          "syntax": ".siblings([selector])",
+          "example": "$(\".tab.is-active\")\n  .siblings()\n  .removeClass(\"is-active\");",
+          "notes": "Siblings share the same parent as the current element.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/siblings/"
+        }
+      ]
+    },
+    {
+      "id": "dom-manipulation",
+      "title": "DOM Manipulation",
+      "description": "Read, insert, replace, and remove page content.",
+      "items": [
+        {
+          "id": "dom-manipulation-text-html",
+          "title": "Read or set text and HTML",
+          "syntax": ".text([value]) / .html([value])",
+          "example": "$(\".message\").text(\"Saved\");\n\n$(\".empty-state\").html(\"<strong>No results</strong>\");",
+          "notes": "Use `.text()` for plain text. Use `.html()` only with trusted markup.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/text/"
+        },
+        {
+          "id": "dom-manipulation-append",
+          "title": "Insert content inside an element",
+          "syntax": ".append(content) / .prepend(content)",
+          "example": "$(\".list\").append(\"<li>New item</li>\");\n$(\".list\").prepend(\"<li>First item</li>\");",
+          "notes": "`.append()` inserts at the end. `.prepend()` inserts at the start.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/append/"
+        },
+        {
+          "id": "dom-manipulation-before-after",
+          "title": "Insert content outside an element",
+          "syntax": ".before(content) / .after(content)",
+          "example": "$(\".target\").before(\"<p>Before target</p>\");\n$(\".target\").after(\"<p>After target</p>\");",
+          "notes": "Use these methods when the new node should become a sibling.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/before/"
+        },
+        {
+          "id": "dom-manipulation-remove-empty",
+          "title": "Remove elements or clear content",
+          "syntax": ".remove() / .empty()",
+          "example": "$(\".toast\").remove();\n$(\".results\").empty();",
+          "notes": "`.remove()` deletes matched nodes. `.empty()` keeps the matched nodes but removes their children.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/remove/"
+        }
+      ]
+    },
+    {
+      "id": "attributes-properties-data",
+      "title": "Attributes, Properties, Data",
+      "description": "Work with attributes, DOM properties, classes, and element data.",
+      "items": [
+        {
+          "id": "attributes-attr",
+          "title": "Read or set attributes",
+          "syntax": ".attr(name[, value])",
+          "example": "$(\"a.download\")\n  .attr(\"href\", \"/files/report.pdf\")\n  .attr(\"download\", \"report.pdf\");",
+          "notes": "Attributes are markup values such as `href`, `src`, `alt`, and `aria-*`.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/attr/"
+        },
+        {
+          "id": "attributes-prop",
+          "title": "Read or set properties",
+          "syntax": ".prop(name[, value])",
+          "example": "$(\"input[name='agree']\").prop(\"checked\", true);\n$(\"button.submit\").prop(\"disabled\", false);",
+          "notes": "Use `.prop()` for live DOM properties such as `checked`, `selected`, and `disabled`.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/prop/"
+        },
+        {
+          "id": "attributes-class",
+          "title": "Add, remove, and toggle classes",
+          "syntax": ".addClass() / .removeClass() / .toggleClass()",
+          "example": "$(\".panel\").addClass(\"is-open\");\n$(\".panel\").removeClass(\"is-hidden\");\n$(\".panel\").toggleClass(\"is-open\");",
+          "notes": "In jQuery 4, do not use the removed `.toggleClass(boolean)` signature. Toggle a named class explicitly.",
+          "jquery4Status": "changed",
+          "replacement": "Use `.toggleClass(\"class-name\")`, `.addClass(\"class-name\")`, or `.removeClass(\"class-name\")`.",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        },
+        {
+          "id": "attributes-data",
+          "title": "Store and read data",
+          "syntax": ".data(key[, value])",
+          "example": "$(\".product\").data(\"sku\", \"A-1047\");\nconst sku = $(\".product\").data(\"sku\");",
+          "notes": "`.data()` is useful for values associated with elements during page behavior.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/data/"
+        }
+      ]
+    },
+    {
+      "id": "css-and-dimensions",
+      "title": "CSS and Dimensions",
+      "description": "Set styles, read layout measurements, and use jQuery 4-safe CSS units.",
+      "items": [
+        {
+          "id": "css-css",
+          "title": "Read or set CSS properties",
+          "syntax": ".css(property[, value])",
+          "example": "$(\".box\").css(\"background-color\", \"#f5f5f5\");\n$(\".box\").css({\n  width: \"320px\",\n  marginTop: \"24px\"\n});",
+          "notes": "In jQuery 4, specify units for CSS values that need units.",
+          "jquery4Status": "changed",
+          "replacement": "Use strings with units, such as `\"24px\"`, `\"2rem\"`, or `\"50%\"`.",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        },
+        {
+          "id": "css-width-height",
+          "title": "Read width and height",
+          "syntax": ".width() / .height()",
+          "example": "const width = $(\".hero\").width();\nconst height = $(\".hero\").height();",
+          "notes": "These methods return numbers. They are useful for scripts that need element dimensions.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/width/"
+        },
+        {
+          "id": "css-position-offset",
+          "title": "Read position and page offset",
+          "syntax": ".position() / .offset()",
+          "example": "const local = $(\".tooltip\").position();\nconst page = $(\".tooltip\").offset();",
+          "notes": "`.position()` is relative to the offset parent. `.offset()` is relative to the document.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/offset/"
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "title": "Events",
+      "description": "Attach, remove, and delegate event handlers.",
+      "items": [
+        {
+          "id": "events-on",
+          "title": "Attach an event handler",
+          "syntax": ".on(events[, selector], handler)",
+          "example": "$(\".save-button\").on(\"click\", function () {\n  $(this).text(\"Saving...\");\n});",
+          "notes": "`.on()` is the main event API for current jQuery code.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/on/"
+        },
+        {
+          "id": "events-delegation",
+          "title": "Use event delegation",
+          "syntax": ".on(event, childSelector, handler)",
+          "example": "$(\".todo-list\").on(\"click\", \".remove\", function () {\n  $(this).closest(\"li\").remove();\n});",
+          "notes": "Delegation works well for elements added after page load.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/on/"
+        },
+        {
+          "id": "events-off",
+          "title": "Remove event handlers",
+          "syntax": ".off(events[, selector][, handler])",
+          "example": "function saveDraft() {\n  // Save current form state.\n}\n\n$(\"form\").on(\"input\", saveDraft);\n$(\"form\").off(\"input\", saveDraft);",
+          "notes": "Named handlers are easier to remove than anonymous functions.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/off/"
+        },
+        {
+          "id": "events-focus-order",
+          "title": "Review focus event assumptions",
+          "syntax": "focus, blur, focusin, focusout",
+          "example": "$(\"form\").on(\"focusin\", \"input\", function () {\n  $(this).addClass(\"has-focus\");\n});\n\n$(\"form\").on(\"focusout\", \"input\", function () {\n  $(this).removeClass(\"has-focus\");\n});",
+          "notes": "jQuery 4 no longer shims focusin and focusout order. Test code that depends on exact focus event order.",
+          "jquery4Status": "changed",
+          "replacement": "Use direct focus and blur logic when ordering is important.",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        }
+      ]
+    },
+    {
+      "id": "effects",
+      "title": "Effects",
+      "description": "Show, hide, animate, and stop animations when the full jQuery build is used.",
+      "items": [
+        {
+          "id": "effects-show-hide",
+          "title": "Show and hide elements",
+          "syntax": ".show() / .hide() / .toggle()",
+          "example": "$(\".details\").show();\n$(\".spinner\").hide();\n$(\".menu\").toggle();",
+          "notes": "Effects are not available in the slim build.",
+          "jquery4Status": "caution",
+          "replacement": "Use the full build or use CSS classes with native transitions.",
+          "officialUrl": "https://api.jquery.com/show/"
+        },
+        {
+          "id": "effects-fade",
+          "title": "Fade elements",
+          "syntax": ".fadeIn() / .fadeOut() / .fadeToggle()",
+          "example": "$(\".toast\")\n  .fadeIn(150)\n  .delay(1800)\n  .fadeOut(150);",
+          "notes": "Use short durations for interface feedback.",
+          "jquery4Status": "caution",
+          "replacement": "Use the full build or CSS transitions.",
+          "officialUrl": "https://api.jquery.com/fadeIn/"
+        },
+        {
+          "id": "effects-animate",
+          "title": "Animate numeric CSS properties",
+          "syntax": ".animate(properties[, duration][, complete])",
+          "example": "$(\".progress-bar\").animate({\n  width: \"75%\"\n}, 300);",
+          "notes": "Set units explicitly where needed. Effects are not available in the slim build.",
+          "jquery4Status": "changed",
+          "replacement": "Use explicit units and the full jQuery build.",
+          "officialUrl": "https://api.jquery.com/animate/"
+        }
+      ]
+    },
+    {
+      "id": "ajax",
+      "title": "Ajax",
+      "description": "Make HTTP requests, fetch JSON, post form data, and handle jQuery 4 Ajax changes.",
+      "items": [
+        {
+          "id": "ajax-get-json",
+          "title": "Fetch JSON",
+          "syntax": "$.getJSON(url[, data][, success])",
+          "example": "$.getJSON(\"/api/products\", function (products) {\n  $(\".count\").text(products.length);\n});",
+          "notes": "The slim build does not include Ajax.",
+          "jquery4Status": "caution",
+          "replacement": "Use the full build or the native `fetch()` API.",
+          "officialUrl": "https://api.jquery.com/jQuery.getJSON/"
+        },
+        {
+          "id": "ajax-post",
+          "title": "Post data",
+          "syntax": "$.post(url[, data][, success][, dataType])",
+          "example": "$.post(\"/api/contact\", {\n  email: $(\"#email\").val(),\n  message: $(\"#message\").val()\n}).done(function () {\n  $(\".notice\").text(\"Message sent\");\n});",
+          "notes": "Use `.done()`, `.fail()`, and `.always()` for request outcomes.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/jQuery.post/"
+        },
+        {
+          "id": "ajax-main",
+          "title": "Use the full Ajax API",
+          "syntax": "$.ajax(options)",
+          "example": "$.ajax({\n  url: \"/api/profile\",\n  method: \"GET\",\n  dataType: \"json\"\n}).done(function (profile) {\n  $(\".name\").text(profile.name);\n}).fail(function () {\n  $(\".error\").text(\"Could not load profile\");\n});",
+          "notes": "`$.ajax()` gives the most control over method, headers, data type, and callbacks.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/jQuery.ajax/"
+        },
+        {
+          "id": "ajax-jsonp",
+          "title": "Request JSONP explicitly",
+          "syntax": "$.ajax({ dataType: \"jsonp\" })",
+          "example": "$.ajax({\n  url: \"https://example.com/feed?callback=?\",\n  dataType: \"jsonp\"\n});",
+          "notes": "jQuery 4 no longer auto-promotes JSON requests with a callback to JSONP.",
+          "jquery4Status": "changed",
+          "replacement": "Set `dataType: \"jsonp\"` only when JSONP is truly required.",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        },
+        {
+          "id": "ajax-script",
+          "title": "Execute downloaded scripts explicitly",
+          "syntax": "$.ajax({ dataType: \"script\" }) / $.getScript(url)",
+          "example": "$.ajax({\n  url: \"/assets/widget.js\",\n  dataType: \"script\"\n});\n\n$.getScript(\"/assets/widget.js\");",
+          "notes": "jQuery 4 does not auto-execute Ajax script responses unless script handling is explicit.",
+          "jquery4Status": "changed",
+          "replacement": "Use `dataType: \"script\"` or `$.getScript()`.",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        }
+      ]
+    },
+    {
+      "id": "utilities-and-miscellaneous",
+      "title": "Utilities and Miscellaneous",
+      "description": "Use small helper methods that remain useful in jQuery 4.",
+      "items": [
+        {
+          "id": "utilities-each",
+          "title": "Loop over matched elements",
+          "syntax": ".each(function)",
+          "example": "$(\".price\").each(function () {\n  const value = Number($(this).text());\n  $(this).text(value.toFixed(2));\n});",
+          "notes": "Inside `.each()`, `this` is the current DOM element.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/each/"
+        },
+        {
+          "id": "utilities-map",
+          "title": "Build an array from elements",
+          "syntax": ".map(function).get()",
+          "example": "const ids = $(\".selected\")\n  .map(function () {\n    return this.id;\n  })\n  .get();",
+          "notes": "Call `.get()` to turn the jQuery result into a plain array.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/map/"
+        },
+        {
+          "id": "utilities-extend",
+          "title": "Merge objects",
+          "syntax": "$.extend(target, object1[, objectN])",
+          "example": "const settings = $.extend({}, defaults, options);",
+          "notes": "Use an empty object as the first argument when you do not want to mutate defaults.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://api.jquery.com/jQuery.extend/"
+        },
+        {
+          "id": "utilities-unique-sort",
+          "title": "Sort and remove duplicate DOM elements",
+          "syntax": "$.uniqueSort(array)",
+          "example": "const nodes = $.uniqueSort($(\".a, .b\").get());",
+          "notes": "`$.unique` was removed in jQuery 4. Use `$.uniqueSort()` instead.",
+          "jquery4Status": "changed",
+          "replacement": "$.uniqueSort(array)",
+          "officialUrl": "https://api.jquery.com/jQuery.uniqueSort/"
+        }
+      ]
+    },
+    {
+      "id": "jquery-4-notes",
+      "title": "jQuery 4 Notes",
+      "description": "Important jQuery 4 behavior changes that beginners are likely to meet during upgrades.",
+      "items": [
+        {
+          "id": "jquery-4-notes-migrate",
+          "title": "Use jQuery Migrate while upgrading",
+          "syntax": "Add jQuery Migrate 4 during testing, then remove it before final release.",
+          "example": "<script src=\"https://code.jquery.com/jquery-4.0.0.min.js\"></script>\n<script src=\"https://code.jquery.com/jquery-migrate-4.0.0.min.js\"></script>",
+          "notes": "Migrate helps find removed or changed APIs during a jQuery 3 to 4 upgrade.",
+          "jquery4Status": "caution",
+          "replacement": "Fix warnings, then test again without Migrate.",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        },
+        {
+          "id": "jquery-4-notes-ui",
+          "title": "Check jQuery UI compatibility",
+          "syntax": "jQuery UI 1.13.3 or newer",
+          "example": "// Projects using jQuery UI should use jQuery UI 1.13.3 or newer with jQuery 4.",
+          "notes": "Older jQuery UI versions should be tested and upgraded before moving to jQuery 4.",
+          "jquery4Status": "changed",
+          "replacement": "Upgrade jQuery UI to 1.13.3 or newer.",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        },
+        {
+          "id": "jquery-4-notes-factory",
+          "title": "Use the factory entry point without a DOM window",
+          "syntax": "require(\"jquery/factory\")(window)",
+          "example": "const { JSDOM } = require(\"jsdom\");\nconst { window } = new JSDOM(\"<!doctype html><p>Hello</p>\");\nconst $ = require(\"jquery/factory\")(window);",
+          "notes": "In Node-like environments without a global DOM window, jQuery 4 uses the dedicated factory entry point.",
+          "jquery4Status": "changed",
+          "replacement": "Use `jquery/factory` or `jquery/factory-slim`.",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        },
+        {
+          "id": "jquery-4-notes-trusted-types",
+          "title": "Trusted Types support",
+          "syntax": "jQuery manipulation methods accept TrustedHTML.",
+          "example": "// With a Trusted Types policy, pass TrustedHTML into jQuery manipulation methods.\n$(\".target\").html(trustedHtml);",
+          "notes": "jQuery 4 adds Trusted Types support for manipulation methods.",
+          "jquery4Status": "current",
+          "replacement": "",
+          "officialUrl": "https://blog.jquery.com/2026/01/17/jquery-4-0-0/"
+        }
+      ]
+    },
+    {
+      "id": "removed-apis-and-replacements",
+      "title": "Removed APIs and Replacements",
+      "description": "Deprecated APIs removed from jQuery 4 and the preferred replacements.",
+      "items": [
+        {
+          "id": "removed-trim",
+          "title": "jQuery.trim",
+          "syntax": "$.trim(value)",
+          "example": "const name = input.value.trim();",
+          "notes": "`$.trim()` was removed in jQuery 4.",
+          "jquery4Status": "removed",
+          "replacement": "String.prototype.trim()",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        },
+        {
+          "id": "removed-parse-json",
+          "title": "jQuery.parseJSON",
+          "syntax": "$.parseJSON(text)",
+          "example": "const data = JSON.parse(text);",
+          "notes": "`$.parseJSON()` was removed in jQuery 4.",
+          "jquery4Status": "removed",
+          "replacement": "JSON.parse(text)",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        },
+        {
+          "id": "removed-is-array",
+          "title": "jQuery.isArray",
+          "syntax": "$.isArray(value)",
+          "example": "if (Array.isArray(items)) {\n  renderItems(items);\n}",
+          "notes": "`$.isArray()` was removed in jQuery 4.",
+          "jquery4Status": "removed",
+          "replacement": "Array.isArray(value)",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        },
+        {
+          "id": "removed-is-function",
+          "title": "jQuery.isFunction",
+          "syntax": "$.isFunction(value)",
+          "example": "if (typeof callback === \"function\") {\n  callback();\n}",
+          "notes": "`$.isFunction()` was removed in jQuery 4.",
+          "jquery4Status": "removed",
+          "replacement": "typeof value === \"function\"",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        },
+        {
+          "id": "removed-type",
+          "title": "jQuery.type",
+          "syntax": "$.type(value)",
+          "example": "const type = Array.isArray(value) ? \"array\" : typeof value;",
+          "notes": "`$.type()` was removed in jQuery 4.",
+          "jquery4Status": "removed",
+          "replacement": "`typeof`, `Array.isArray`, `instanceof`, or `Object.prototype.toString.call(value)`",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        },
+        {
+          "id": "removed-now",
+          "title": "jQuery.now",
+          "syntax": "$.now()",
+          "example": "const timestamp = Date.now();",
+          "notes": "`$.now()` was removed in jQuery 4.",
+          "jquery4Status": "removed",
+          "replacement": "Date.now()",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        },
+        {
+          "id": "removed-is-numeric",
+          "title": "jQuery.isNumeric",
+          "syntax": "$.isNumeric(value)",
+          "example": "const value = Number(input.value);\nif (Number.isFinite(value)) {\n  saveValue(value);\n}",
+          "notes": "`$.isNumeric()` was removed in jQuery 4.",
+          "jquery4Status": "removed",
+          "replacement": "Number.isFinite(Number(value)) or a project-specific check",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        },
+        {
+          "id": "removed-node-name",
+          "title": "jQuery.nodeName",
+          "syntax": "$.nodeName(element, name)",
+          "example": "if (element.nodeName.toLowerCase() === \"input\") {\n  handleInput(element);\n}",
+          "notes": "`$.nodeName()` was removed in jQuery 4.",
+          "jquery4Status": "removed",
+          "replacement": "element.nodeName.toLowerCase()",
+          "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
+        }
+      ]
+    }
+  ]
+}

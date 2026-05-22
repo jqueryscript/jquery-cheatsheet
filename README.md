@@ -4,11 +4,7 @@ Fast jQuery lookup for real projects. This repo collects the jQuery 4 APIs devel
 
 Use it when you need to maintain legacy jQuery code, update a jQuery 3 project, check a method signature, copy a short example, or confirm whether an old snippet still belongs in a jQuery 4 codebase.
 
-Web version:
-
-```text
-https://www.jqueryscript.net/jquery-cheat-sheet/
-```
+Web version: [jQuery Cheat Sheet](https://www.jqueryscript.net/jquery-cheat-sheet/)
 
 ## What Is Included
 
@@ -22,11 +18,7 @@ https://www.jqueryscript.net/jquery-cheat-sheet/
 
 ## Live Page Target
 
-Public URL:
-
-```text
-https://www.jqueryscript.net/jquery-cheat-sheet/
-```
+Public URL: [https://www.jqueryscript.net/jquery-cheat-sheet/](https://www.jqueryscript.net/jquery-cheat-sheet/)
 
 ## Quick Start
 

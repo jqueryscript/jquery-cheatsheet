@@ -13,13 +13,12 @@ https://www.jqueryscript.net/jquery-cheat-sheet/
 ## What Is Included
 
 - 63 beginner-friendly examples across 13 sections.
-- A searchable static cheat sheet page in `index.html`.
-- A structured JSON content source in `data/jquery-4-cheatsheet.json`.
-- jQuery 4 migration notes and removed API replacements.
-- Classic jQuery APIs that remain useful in jQuery 4.
-- Copy buttons, dark mode, filters, sticky table of contents, and responsive layout.
-- SEO-ready HTML for hosting on `jqueryscript.net`.
-- Data validation with `scripts/validate-data.js`.
+- jQuery 4 install and loading examples.
+- Selectors, traversal, DOM manipulation, attributes, properties, data, CSS, dimensions, events, effects, Ajax, and utilities.
+- Classic jQuery APIs that remain useful in jQuery 4, including `.val()`, `.serialize()`, `.one()`, `.trigger()`, `.eq()`, and `.hasClass()`.
+- jQuery 4 migration notes for slim builds, Ajax behavior, CSS units, browser support, jQuery UI, and Node-like environments.
+- Removed APIs with modern replacements.
+- Short examples designed for quick copying and comparison.
 
 ## Live Page Target
 

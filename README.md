@@ -8,7 +8,7 @@ Web version: [jQuery Cheat Sheet](https://www.jqueryscript.net/jquery-cheat-shee
 
 ## What Is Included
 
-- 63 beginner-friendly examples across 13 sections.
+- 65 beginner-friendly examples across 13 sections.
 - jQuery 4 install and loading examples.
 - Selectors, traversal, DOM manipulation, attributes, properties, data, CSS, dimensions, events, effects, Ajax, and utilities.
 - Classic jQuery APIs that remain useful in jQuery 4, including `.val()`, `.serialize()`, `.one()`, `.trigger()`, `.eq()`, and `.hasClass()`.
@@ -42,7 +42,7 @@ The project has no frontend build step. It is plain HTML, CSS, JavaScript, SVG, 
 Official CDN:
 
 ```html
-<script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-4.1.0.min.js"></script>
 <script>
   $(function () {
     $(".status").text("jQuery is ready");
@@ -53,7 +53,7 @@ Official CDN:
 npm:
 
 ```bash
-npm install jquery@4.0.0
+npm install jquery@4.1.0
 ```
 
 Bundler import:
@@ -67,7 +67,7 @@ $(".notice").addClass("is-visible");
 Slim build:
 
 ```html
-<script src="https://code.jquery.com/jquery-4.0.0.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-4.1.0.slim.min.js"></script>
 ```
 
 Use the full build when you need Ajax, effects, Deferred, Callbacks, or queues.
@@ -77,7 +77,7 @@ Use the full build when you need Ajax, effects, Deferred, Callbacks, or queues.
 | Section | Covers |
 | --- | --- |
 | Getting Started | CDN, npm, ready handlers, slim build, browser support |
-| Classic APIs Still Useful in jQuery 4 | `.val()`, `.serialize()`, `.one()`, `.trigger()`, `.eq()`, `.hasClass()`, chaining |
+| Classic APIs Still Useful in jQuery 4 | `.val()`, `.serialize()`, `.serializeArray()`, `.one()`, `.trigger()`, `.eq()`, `.hasClass()`, chaining |
 | Selectors | CSS selectors, context selection, `.filter()`, `.find()` |
 | DOM Traversal | `.closest()`, `.children()`, `.siblings()` |
 | DOM Manipulation | `.text()`, `.html()`, `.append()`, `.prepend()`, `.remove()`, `.empty()` |
@@ -85,10 +85,18 @@ Use the full build when you need Ajax, effects, Deferred, Callbacks, or queues.
 | CSS and Dimensions | `.css()`, `.width()`, `.height()`, `.offset()`, `.position()` |
 | Events | `.on()`, delegated events, `.off()`, focus event notes |
 | Effects | `.show()`, `.hide()`, `.fadeIn()`, `.fadeOut()`, `.animate()` |
-| Ajax | `$.ajax()`, `$.getJSON()`, `$.post()`, JSONP, script requests |
+| Ajax | `$.ajax()`, `$.getJSON()`, `$.post()`, `jqXHR.responseURL`, JSONP, script requests |
 | Utilities and Miscellaneous | `.each()`, `.map()`, `$.extend()`, `$.uniqueSort()` |
 | jQuery 4 Notes | Migrate, jQuery UI compatibility, factory entry point, Trusted Types |
 | Removed APIs and Replacements | Removed helper APIs and native replacements |
+
+## What Changed in jQuery 4.1
+
+- `jqXHR.responseURL` gives the final response URL after redirects when the Ajax transport provides it. Modern XHR supports it, while IE 11 XHR and the script and JSONP transports do not.
+- `.serialize()` and `.serializeArray()` include named, enabled form-associated custom elements when called on their form. jQuery reads each control’s `name` and `value` properties.
+- Custom Ajax transports can pass an object to the completion callback with fields such as `status`, `statusText`, `responses`, `headers`, and `responseURL`. The positional signature still works.
+- CSS helpers work in non-XHTML XML documents, including XSLT output. Selector fixes include leading combinators in document fragments.
+- `$.uniqueSort()` removes duplicates faster and preserves its existing ordering. The release also fixes a regular expression denial-of-service issue in the selector engine.
 
 ## Common jQuery 4 Examples
 
@@ -192,7 +200,7 @@ $(".steps li").last().addClass("is-final");
 
 ## Important jQuery 4 Notes
 
-- jQuery 4.0.0 is available from the official CDN and npm.
+- jQuery 4.1.0 is available from the official CDN and npm.
 - The slim build excludes Ajax, effects, callbacks, deferred, and queue modules.
 - IE 10 and older are no longer supported.
 - Edge Legacy and older mobile browser versions are no longer supported.
@@ -417,6 +425,7 @@ Search and copy jQuery 4 examples for selectors, events, Ajax, effects, classic 
 
 ## Sources
 
+- [jQuery 4.1.0 release post](https://blog.jquery.com/2026/11/17/jquery-4-1-0-and-3-8-0-released-passing-the-torch/)
 - [jQuery 4.0.0 release post](https://blog.jquery.com/2026/01/17/jquery-4-0-0/)
 - [jQuery Core 4.0 Upgrade Guide](https://jquery.com/upgrade-guide/4.0/)
 - [jQuery API Documentation](https://api.jquery.com/)

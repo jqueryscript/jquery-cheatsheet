@@ -1,6 +1,6 @@
 {
-  "version": "4.0.0",
-  "updated": "2026-05-22",
+  "version": "4.1.0",
+  "updated": "2026-11-19",
   "sections": [
     {
       "id": "getting-started",
@@ -10,22 +10,22 @@
         {
           "id": "getting-started-cdn",
           "title": "Load jQuery 4 from the official CDN",
-          "syntax": "<script src=\"https://code.jquery.com/jquery-4.0.0.min.js\"></script>",
-          "example": "<script src=\"https://code.jquery.com/jquery-4.0.0.min.js\"></script>\n<script>\n  $(function () {\n    $(\".status\").text(\"jQuery is ready\");\n  });\n</script>",
+          "syntax": "<script src=\"https://code.jquery.com/jquery-4.1.0.min.js\"></script>",
+          "example": "<script src=\"https://code.jquery.com/jquery-4.1.0.min.js\"></script>\n<script>\n  $(function () {\n    $(\".status\").text(\"jQuery is ready\");\n  });\n</script>",
           "notes": "Use the official CDN URL when you need a direct browser script tag.",
           "jquery4Status": "current",
           "replacement": "",
-          "officialUrl": "https://blog.jquery.com/2026/01/17/jquery-4-0-0/"
+          "officialUrl": "https://jquery.com/download/"
         },
         {
           "id": "getting-started-npm",
           "title": "Install from npm",
-          "syntax": "npm install jquery@4.0.0",
-          "example": "npm install jquery@4.0.0\n\nimport $ from \"jquery\";\n\n$(\".notice\").addClass(\"is-visible\");",
+          "syntax": "npm install jquery@4.1.0",
+          "example": "npm install jquery@4.1.0\n\nimport $ from \"jquery\";\n\n$(\".notice\").addClass(\"is-visible\");",
           "notes": "Use the npm package when jQuery is bundled by a build tool.",
           "jquery4Status": "current",
           "replacement": "",
-          "officialUrl": "https://blog.jquery.com/2026/01/17/jquery-4-0-0/"
+          "officialUrl": "https://jquery.com/download/"
         },
         {
           "id": "getting-started-ready",
@@ -40,12 +40,12 @@
         {
           "id": "getting-started-slim",
           "title": "Use the slim build only when you do not need excluded modules",
-          "syntax": "<script src=\"https://code.jquery.com/jquery-4.0.0.slim.min.js\"></script>",
-          "example": "<script src=\"https://code.jquery.com/jquery-4.0.0.slim.min.js\"></script>\n<script>\n  $(\"button\").on(\"click\", function () {\n    $(this).toggleClass(\"is-active\");\n  });\n</script>",
+          "syntax": "<script src=\"https://code.jquery.com/jquery-4.1.0.slim.min.js\"></script>",
+          "example": "<script src=\"https://code.jquery.com/jquery-4.1.0.slim.min.js\"></script>\n<script>\n  $(\"button\").on(\"click\", function () {\n    $(this).toggleClass(\"is-active\");\n  });\n</script>",
           "notes": "The jQuery 4 slim build excludes ajax, effects, callbacks, deferred, and queue modules. Use the full build for those features.",
           "jquery4Status": "caution",
-          "replacement": "Use https://code.jquery.com/jquery-4.0.0.min.js when ajax, effects, Deferred, Callbacks, or queues are needed.",
-          "officialUrl": "https://blog.jquery.com/2026/01/17/jquery-4-0-0/"
+          "replacement": "Use https://code.jquery.com/jquery-4.1.0.min.js when ajax, effects, Deferred, Callbacks, or queues are needed.",
+          "officialUrl": "https://jquery.com/download/"
         },
         {
           "id": "getting-started-browser-support",
@@ -135,6 +135,16 @@
           "officialUrl": "https://api.jquery.com/serialize/"
         },
         {
+          "id": "classic-serialize-custom-elements",
+          "title": "Serialize form-associated custom elements",
+          "syntax": "$(form).serialize() / $(form).serializeArray()",
+          "example": "<!-- jQuery 4.1+ in a browser with ElementInternals support -->\n<form id=\"feedback\">\n  <rating-value name=\"rating\" value=\"5\"></rating-value>\n</form>\n<script>\n  class RatingValue extends HTMLElement {\n    static formAssociated = true;\n    #internals = this.attachInternals();\n\n    connectedCallback() {\n      this.#internals.setFormValue(this.value);\n    }\n\n    get name() {\n      return this.getAttribute(\"name\");\n    }\n\n    get value() {\n      return this.getAttribute(\"value\") ?? \"\";\n    }\n  }\n\n  customElements.define(\"rating-value\", RatingValue);\n\n  $(\"#feedback\").serialize();      // \"rating=5\"\n  $(\"#feedback\").serializeArray(); // [{ name: \"rating\", value: \"5\" }]\n</script>",
+          "notes": "Since jQuery 4.1, both methods include eligible form-associated custom elements from the form’s elements collection. Call them on the form. jQuery reads the control’s name and value properties. For native submission data such as a FormData value passed to setFormValue(), use new FormData(form).",
+          "jquery4Status": "changed",
+          "replacement": "",
+          "officialUrl": "https://blog.jquery.com/2026/11/17/jquery-4-1-0-and-3-8-0-released-passing-the-torch/"
+        },
+        {
           "id": "classic-clone",
           "title": "Clone matched elements",
           "syntax": ".clone([withDataAndEvents])",
@@ -206,7 +216,7 @@
           "title": "Limit selection to a context",
           "syntax": "$(selector, context)",
           "example": "const panel = document.querySelector(\".panel\");\nconst buttons = $(\"button\", panel);",
-          "notes": "A context prevents accidental matches outside a known container.",
+          "notes": "A context prevents accidental matches outside a known container. jQuery 4.1 uses querySelectorAll internally for element lookup and fixes leading combinators in document fragments.",
           "jquery4Status": "current",
           "replacement": "",
           "officialUrl": "https://api.jquery.com/jQuery/"
@@ -374,7 +384,7 @@
           "title": "Read or set CSS properties",
           "syntax": ".css(property[, value])",
           "example": "$(\".box\").css(\"background-color\", \"#f5f5f5\");\n$(\".box\").css({\n  width: \"320px\",\n  marginTop: \"24px\"\n});",
-          "notes": "In jQuery 4, specify units for CSS values that need units.",
+          "notes": "In jQuery 4, specify units for CSS values that need units. Since jQuery 4.1, CSS helpers work in non-XHTML XML documents such as XSLT output.",
           "jquery4Status": "changed",
           "replacement": "Use strings with units, such as `\"24px\"`, `\"2rem\"`, or `\"50%\"`.",
           "officialUrl": "https://jquery.com/upgrade-guide/4.0/"
@@ -521,6 +531,16 @@
           "officialUrl": "https://api.jquery.com/jQuery.ajax/"
         },
         {
+          "id": "ajax-response-url",
+          "title": "Read the final Ajax response URL",
+          "syntax": "jqXHR.responseURL",
+          "example": "const request = $.ajax(\"/api/profile\");\n\nrequest.always(function () {\n  if (request.responseURL) {\n    console.log(request.responseURL);\n  }\n});",
+          "notes": "Since jQuery 4.1, jqXHR exposes the final response URL after browser redirects when the transport supplies it. Read it after the request completes. Modern XHR supports it. IE 11 XHR and the script and JSONP transports leave it unavailable.",
+          "jquery4Status": "changed",
+          "replacement": "",
+          "officialUrl": "https://blog.jquery.com/2026/11/17/jquery-4-1-0-and-3-8-0-released-passing-the-torch/"
+        },
+        {
           "id": "ajax-jsonp",
           "title": "Request JSONP explicitly",
           "syntax": "$.ajax({ dataType: \"jsonp\" })",
@@ -581,8 +601,8 @@
           "id": "utilities-unique-sort",
           "title": "Sort and remove duplicate DOM elements",
           "syntax": "$.uniqueSort(array)",
-          "example": "const nodes = $.uniqueSort($(\".a, .b\").get());",
-          "notes": "`$.unique` was removed in jQuery 4. Use `$.uniqueSort()` instead.",
+          "example": "const nodes = $(\".a\").get().concat($(\".b\").get());\nconst sorted = $.uniqueSort(nodes);",
+          "notes": "$.uniqueSort() replaces the removed $.unique() alias. It sorts the array in document order and removes duplicates in place. jQuery 4.1 removes duplicates faster and preserves the same ordering.",
           "jquery4Status": "changed",
           "replacement": "$.uniqueSort(array)",
           "officialUrl": "https://api.jquery.com/jQuery.uniqueSort/"
@@ -598,7 +618,7 @@
           "id": "jquery-4-notes-migrate",
           "title": "Use jQuery Migrate while upgrading",
           "syntax": "Add jQuery Migrate 4 during testing, then remove it before final release.",
-          "example": "<script src=\"https://code.jquery.com/jquery-4.0.0.min.js\"></script>\n<script src=\"https://code.jquery.com/jquery-migrate-4.0.0.min.js\"></script>",
+          "example": "<script src=\"https://code.jquery.com/jquery-4.1.0.min.js\"></script>\n<script src=\"https://code.jquery.com/jquery-migrate-4.0.0.min.js\"></script>",
           "notes": "Migrate helps find removed or changed APIs during a jQuery 3 to 4 upgrade.",
           "jquery4Status": "caution",
           "replacement": "Fix warnings, then test again without Migrate.",
